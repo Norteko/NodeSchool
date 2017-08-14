@@ -21,14 +21,22 @@
         return false
       }
 
-      let threeWordsRegex = /^$|^[a-zA-Za-яА-ЯёЁ]+ [a-zA-Za-яА-ЯёЁ]+ [a-zA-Za-яА-ЯёЁ]+?$/
+      const threeWordsRegex = /^$|^[a-zA-Za-яА-ЯёЁ]+ [a-zA-Za-яА-ЯёЁ]+ [a-zA-Za-яА-ЯёЁ]+?$/
       return threeWordsRegex.test(preparedArray.join(gap))
     },
     phone: function (phone) {
-      return false
+      const preparedPhone = phone.trim()
+      const phoneRegex = /^\+7\([0-9]{3}\)[0-9]{3}-[0-9]{2}-[0-9]{2}$/i
+      if (!phoneRegex.test(preparedPhone)) {
+        return false
+      }
+      const sum = preparedPhone.match(/[0-9]/g).reduce((a, b) => +a + +b)
+      return sum <= 30
     },
+
     email: function (email) {
-      let emailRegex = /^[a-zA-Z-0-9-а-яА-Я-ёЁ]{1,}@(ya.ru|yandex.ru|yandex.ua|yandex.by|yandex.kz|yandex.com)$/i
+      email = email.trim()
+      const emailRegex = /^[a-zA-Z-0-9-а-яА-Я-ёЁ]{1,}@(ya.ru|yandex.ru|yandex.ua|yandex.by|yandex.kz|yandex.com)$/i
       return emailRegex.test(email)
     }
   }
