@@ -57,6 +57,30 @@
     }
   }
 
+  function request () {
+    window.fetch(myFormApp.action).then(function (response) {
+      return response.json()
+    }).then(function (data) {
+      switch (data.status) {
+        case 'success':
+          resultContainer.classList.add(data.status)
+          resultContainer.textContent = 'Success'
+          break
+        case 'error':
+          resultContainer.classList.add(data.status)
+          resultContainer.textContent = data.reason
+          break
+        case 'progress':
+          resultContainer.classList.add(data.status)
+          console.log('1000')
+          setTimeout(request, data.timeout)
+          break
+        default:
+          break
+      }
+    })
+  }
+
   function onSubmit () {
     Object.keys(formFields).forEach(function (element) {
       const input = formFields[element]
@@ -68,10 +92,10 @@
     const testedFields = validate()
 
     if (testedFields.isValid) {
-      return window.fetch(myFormApp.action).then(function (response) {
-        console.log(response)
-      })
-    }
+      submitButton.disabled = true
+      submitButton.classList.add('disable')
+      return request()
+    }  
 
     testedFields.errorFields.forEach(function (element) {
       const input = formFields[element]
