@@ -1,0 +1,41 @@
+.app {
+  display: flex;
+  justify-content: center;
+  padding-top: 50px;
+  margin: 0;
+}
+
+.myForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f1f1f1;  
+  width: 350px;
+  height: 200px;
+  padding: 50px 10px 10px 10px;
+}
+
+.myForm__input {
+    width: 150px;
+    height: 29px;
+    margin: 0 0 5px 0;
+    padding: 0 8px;
+    background: #fff;
+    border: 1px solid #d9d9d9;
+    border-top: 1px solid #c0c0c0;
+}
+
+.myForm__button {
+    height: 29px;
+    vertical-align: bottom;
+    margin: 0;
+    border: 1px solid #3079ed;
+    color: #fff;
+    text-shadow: 0 1px rgba(0,0,0,0.1);
+    background-color: #4d90fe; 
+}
+
+
+.error {
+  border: 1px solid red;
+}
