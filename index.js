@@ -72,7 +72,6 @@
           break
         case 'progress':
           resultContainer.classList.add(data.status)
-          console.log('1000')
           setTimeout(request, data.timeout)
           break
         default:
@@ -95,7 +94,7 @@
       submitButton.disabled = true
       submitButton.classList.add('disable')
       return request()
-    }  
+    }
 
     testedFields.errorFields.forEach(function (element) {
       const input = formFields[element]
@@ -117,7 +116,9 @@
     setData: function (data) {
       if (typeof data === 'object') {
         Object.keys(data).forEach(function (fieldName) {
-          formFields[fieldName].value = data[fieldName]
+          if (formFields[fieldName]) {
+            formFields[fieldName].value = data[fieldName]
+          }
         })
       }
     },
